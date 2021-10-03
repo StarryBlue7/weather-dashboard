@@ -37,7 +37,6 @@ function displayForecast(response, units) {
     
     $('#forecast').html('')
     for (i = 0; i < 5; i++) {
-    // daily.each(function() {
         const date = $('<h5>').text(moment.unix(daily[i].dt).format("MM/DD"));
         const icon = getIcon(daily[i].weather[0].icon, daily[i].weather[0].description)
         const temperature = $('<p>').text('Temp: ' + daily[i].temp.day + ' ' + getUnits(units).temperature);
@@ -88,22 +87,61 @@ function getCoordinates(cityQuery) {
         city = {
             name: response[0].name,
             state: response[0].state,
+            country: response[0].country,
             lat: response[0].lat,
             lon: response[0].lon
         }
     
         getWeather(city);
-        // saveHistory(city);
+        saveHistory(city);
+        showHistory();
       });
 }
 
-function init() {
-    searchHistory = localStorage.getItem("searchHistory");
+function saveHistory(city) {
+    let searchHistory = JSON.parse(localStorage.getItem("searchHistory"));
     if (!searchHistory) {
-        getWeather(37.795505,-122.400469, "San Francisco", "metric");
-    } else {
-        getWeather(searchHistory[0].lat, searchHistory[0].lon, searchHistory[0].city);
+        searchHistory = [];
     }
+
+    const inHistory = (item) => item.name === city.name;
+    if (searchHistory.findIndex(inHistory) > 0) {
+        searchHistory.splice(searchHistory.findIndex(inHistory), 1);
+        searchHistory.unshift(city);
+    } else if (searchHistory.findIndex(inHistory) !== 0) {
+        searchHistory.unshift(city);
+    }
+
+    while (searchHistory.length > 10) {
+        searchHistory.pop();
+    }
+    
+    localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
 }
 
-// init();
+function showHistory() {
+    let searchHistory = JSON.parse(localStorage.getItem("searchHistory"));
+
+    if (!searchHistory) {
+        searchHistory = [];
+    }
+    $('#search-history').html('');
+    $.each(searchHistory, function(i, entry) {
+        const li = $('<li>').text(entry.name);
+        li.attr('class', 'list-group-item');
+        li.attr('data-index', i);
+        $('#search-history').append(li);
+    })
+}
+
+function init() {
+    let searchHistory = JSON.parse(localStorage.getItem("searchHistory"));
+    if (!searchHistory) {
+        getWeather({lat: 37.795505, lon: -122.400469, name: "San Francisco"}, "imperial");
+    } else {
+        getWeather(searchHistory[0]);
+    }
+    showHistory();
+}
+
+init();
