@@ -65,7 +65,7 @@ function getIcon(iconCode, description) {
     return "<img alt='" + description + " icon' src='http://openweathermap.org/img/wn/" + iconCode + "@2x.png'>"
 }
 
-$('#search-btn').on('click', function(event) {
+$('#search-form').on('submit', function(event) {
     event.preventDefault();
     cityQuery = $('#search-box').val();
     getCoordinates(cityQuery); 
@@ -84,6 +84,9 @@ function getCoordinates(cityQuery) {
       }).then(function (response) {
         console.log(response[0]);
 
+        if (response.length === 0) {
+            return alert("City not found! Try again.");
+        }
         city = {
             name: response[0].name,
             state: response[0].state,
@@ -132,6 +135,22 @@ function showHistory() {
         li.attr('data-index', i);
         $('#search-history').append(li);
     })
+}
+
+$('#search-history').on('click', 'li',  function(event) {
+    event.stopPropagation();
+    const button = $(this);
+    const index = button.attr('data-index');
+    const searchHistory = JSON.parse(localStorage.getItem("searchHistory"));
+    const city = searchHistory[index];
+
+    getWeather(city);
+    setActive(button);
+})
+
+function setActive(button) {
+    button.addClass('active');
+    button.siblings().removeClass('active');
 }
 
 function init() {
