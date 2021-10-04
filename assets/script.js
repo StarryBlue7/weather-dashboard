@@ -27,17 +27,18 @@ function displayToday(response, city, units) {
     const temperature = $('<p>').text('Temperature: ' + current.temp + ' ' + getUnits(units).temperature);
     const humidity = $('<p>').text('Humidity: ' + current.humidity + '%');
     const wind = $('<p>').text('Wind Speed: ' + current.wind_speed + ' ' + getUnits(units).speed);
-    const uvIndexIcon = $('<p>').text('UV Index: ' + current.uvi);
+    const uvIndexIcon = $('<em>').text(current.uvi).addClass('uv ' + getUVClass(current.uvi));
+    const uvIndex = $('<p>').text('UV Index: ').append(uvIndexIcon);
 
     $('#current').html('')
-    $('#current').append(header, temperature, humidity, wind, uvIndexIcon);
+    $('#current').append(header, temperature, humidity, wind, uvIndex);
 }
 
 function displayForecast(response, units) {
     const daily = response.daily;
     
     $('#forecast').html('')
-    for (i = 0; i < 5; i++) {
+    for (i = 1; i < 6; i++) {
         const date = $('<h5>').text(moment.unix(daily[i].dt).format("MM/DD"));
         const icon = getIcon(daily[i].weather[0].icon, daily[i].weather[0].description)
         const temperature = $('<p>').text('Temp: ' + daily[i].temp.day + ' ' + getUnits(units).temperature);
@@ -64,6 +65,21 @@ function getUnits(units) {
 
 function getIcon(iconCode, description) {
     return "<img alt='" + description + " icon' src='http://openweathermap.org/img/wn/" + iconCode + "@2x.png'>"
+}
+
+function getUVClass(uvi) {
+    const uviVal = parseInt(uvi); 
+    if (uviVal < 3) {
+        return "uv-low";
+    } else if (uviVal < 6) {
+        return "uv-moderate";
+    } else if (uviVal < 8) {
+        return "uv-high";
+    } else if (uviVal < 11) {
+        return "uv-veryhigh";
+    } else if (uviVal >= 11) {
+        return "uv-extreme";
+    }
 }
 
 $('#search-form').on('submit', function(event) {
