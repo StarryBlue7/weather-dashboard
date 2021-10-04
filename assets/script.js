@@ -20,10 +20,10 @@ function getWeather(city, units) {
 
 function displayToday(response, city, units) {
     const current = response.current;
-    const date = moment().format("dddd, MMMM Do");
-
+    
     const icon = getIcon(current.weather[0].icon, current.weather[0].description)
-    const header = $('<h2>').text(city.name + ' on ' + date).prepend(icon);
+    const cityName = $('<h2>').text(city.name).attr('id', 'city-name').prepend(icon);
+    const date = $('<h2>').text('on ' + moment().format("dddd, MMMM Do")).attr('id', 'date');
     const temperature = $('<p>').text('Temperature: ' + current.temp + ' ' + getUnits(units).temperature);
     const humidity = $('<p>').text('Humidity: ' + current.humidity + '%');
     const wind = $('<p>').text('Wind Speed: ' + current.wind_speed + ' ' + getUnits(units).speed);
@@ -31,7 +31,7 @@ function displayToday(response, city, units) {
     const uvIndex = $('<p>').text('UV Index: ').append(uvIndexIcon);
 
     $('#current').html('')
-    $('#current').append(header, temperature, humidity, wind, uvIndex);
+    $('#current').append(cityName, date, temperature, humidity, wind, uvIndex);
 }
 
 function displayForecast(response, units) {
