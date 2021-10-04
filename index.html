@@ -13,87 +13,39 @@
     <title>Weather Dashboard</title>
 </head>
 
-<body class="container-fluid min-vh-100">
-    <header id="top-bar" class="row bg-dark d-flex justify-content-center"><h1 class="text-light">Weather Dashboard</h1></header>
+<body class="container-fluid min-vh-100 bg-dark">
+    <header id="top-bar" class="row bg-dark d-flex justify-content-center">
+        <h1 class="text-light">Weather Dashboard</h1>
+    </header>
     
     
     <main id="dashboard" class="row d-flex flex-row flex-wrap mh-100">
 
-        <div id="side-bar" class="col-md-3 col-sm-12 d-flex flex-column justify-content-start bg-info pr-3">
+        <aside id="side-bar" class="col-md-3 col-sm-12 d-flex flex-column justify-content-start pr-3">
             <h4 class="my-2 mx-1 text-light">Search for a City:</h4>
 
             <form id="search-form" class="input-group mb-3">
                 <input id="search-box" type="text" class="form-control" placeholder="Enter a city name" aria-label="City search" aria-describedby="button-addon2" type="submit">
-                <button id="search-btn" class="btn btn-outline-secondary btn-primary text-light" type="submit"><i class="fas fa-search-location"></i></i></button>
+                <button id="search-btn" class="btn btn-primary text-light" type="submit"><i class="fas fa-search-location"></i></i></button>
             </form>
 
-            <ul id="search-history" class="list-group pb-3">
-                <li class="list-group-item">City 1</li>
-                <li class="list-group-item">City 2</li>
-                <li class="list-group-item">City 3</li>
-                <li class="list-group-item">City 3</li>
-                <li class="list-group-item">City 3</li>
-            </ul>
-        </div>
+            <ul id="search-history" class="list-group pb-3"></ul>
+        </aside>
 
-        <div class="col-md-9 col-sm-12 d-flex flex-column justify-content-start">
-            <div class="row card mt-3 mx-1">
-                <div id="current" class="card-body d-flex flex-column justify-content-evenly">
+        <section class="col-md-9 col-sm-12 d-flex flex-column justify-content-start">
+            <div id="current-card" class="row card mt-3 mx-1">
+                <article id="current" class="card-body d-flex flex-column justify-content-evenly">
                     <h2 class="card-title">Weather Today</h2>
-                    <p class="card-subtitle ">Weather Data!</p>
-                </div>
+                    <p class="card-subtitle ">Weather Data</p>
+                </article>
             </div>
 
-            <div class="row mt-3 ml-3"><h3>5-Day Forecast:</h3></div>
+            <div class="row mt-3 ml-1"><h3 id="forecast-header">5-Day Forecast:</h3></div>
 
-            <div id="forecast" class="row mx-1 d-flex flex-row flex-wrap justify-content-around">
-                
-                <div class="card text-white bg-primary mr-3 mb-3 col-lg-2 col-md-3 col-sm-4">
-                    <!-- <div class="card-body"> -->
-                        <h5 class="card-title">Date</h5>
-                        <p class="card-text">Weather Data</p>
-                        <p class="card-text">Weather Data</p>
-                    <!-- </div> -->
-                </div>
-                
-                <div class="card text-white bg-primary mr-3 mb-3 col-lg-2 col-md-3 col-sm-4">
-                    <div class="card-body">
-                        <h5 class="card-title">Date</h5>
-                        <p class="card-text">Weather Data</p>
-                        <p class="card-text">Weather Data</p>
-                    </div>
-                </div>
-
-                <div class="card text-white bg-primary mr-3 mb-3 col-lg-2 col-md-3 col-sm-4">
-                    <div class="card-body">
-                        <h5 class="card-title">Date</h5>
-                        <p class="card-text">Weather Data</p>
-                        <p class="card-text">Weather Data</p>
-                    </div>
-                </div>
-
-                <div class="card text-white bg-primary mr-3 mb-3 col-lg-2 col-md-3 col-sm-4">
-                    <div class="card-body">
-                        <h5 class="card-title">Date</h5>
-                        <p class="card-text">Weather Data</p>
-                        <p class="card-text">Weather Data</p>
-                    </div>
-                </div>
-
-                <div class="card text-white bg-primary mr-3 mb-3 col-lg-2 col-md-3 col-sm-4">
-                    <div class="card-body">
-                        <h5 class="card-title">Date</h5>
-                        <p class="card-text">Weather Data</p>
-                        <p class="card-text">Weather Data</p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
+            <article id="forecast" class="row mx-1 d-flex flex-row flex-wrap justify-content-around"></div>
+        </section>
     </main>
     
-    
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" 
         integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" 

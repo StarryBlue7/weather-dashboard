@@ -1,0 +1,75 @@
+#side-bar {
+    background-color: rgba(1,1,1,.7);
+    border-radius: 0 0 3px 0;
+}
+
+#current-card {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+#current > p {
+    font-weight: bold;
+}
+
+h2 > img {
+    background-color: rgba(2, 117, 216, 0.7);
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+#forecast-header {
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 0 5px 2px 5px;
+    border-radius: 3px;
+    border: rgba(200, 200, 200, 0.7) solid 1px;
+}
+
+#forecast > .card {
+    background-color: rgba(2, 117, 216, 0.9);
+}
+
+.card > h5 {
+    text-align: center;
+    font-size: 200%;
+    margin-top: 10px;
+}
+
+.card > p {
+    font-weight: bold;
+}
+
+.card > img {
+    max-width: 100px;
+    align-self: center;
+}
+
+.uv {
+    border-radius: 2px;
+    padding: 2px;
+}
+
+.uv-low {
+    background-color: green;
+    color: white;
+}
+
+.uv-moderate {
+    background-color: yellow;
+    color: black;
+}
+
+.uv-high {
+    background-color: rgb(255, 115, 0);
+    color: black;
+}
+
+.uv-veryhigh {
+    background-color: rgb(199, 0, 0);
+    color: white;
+}
+
+.uv-extreme {
+    background-color: rgb(119, 0, 255);
+    color: white;
+}
+

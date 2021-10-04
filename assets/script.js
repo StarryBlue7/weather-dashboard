@@ -44,7 +44,7 @@ function displayForecast(response, units) {
         const humidity = $('<p>').text('Humidity: ' + daily[i].humidity + ' ' + "%");
 
         let card = $('<div>').append(date, icon, temperature, humidity);
-        card.attr('class', 'card text-white bg-primary mr-3 mb-3 col-lg-2 col-md-3 col-sm-4');
+        card.attr('class', 'card text-white mr-3 mb-3 col-lg-2 col-md-3 col-sm-4');
         $('#forecast').append(card);
     }
 }
@@ -163,7 +163,7 @@ function displayBg(city) {
         method: 'GET',
       }).then(function (response) {
         console.log(response);
-        $('#dashboard').css({
+        $('body').css({
             'background-image': 'url(\'' + response.urls.full + '\')', 
             'background-size': 'cover', 
             'background-position': 'center'
