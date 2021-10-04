@@ -13,7 +13,8 @@ function getWeather(city, units) {
       }).then(function (response) {
         console.log(response);
         displayToday(response, city, units);
-        displayForecast(response, units)
+        displayForecast(response, units);
+        displayBg(city);
       });
 }
 
@@ -135,6 +136,7 @@ function showHistory() {
         li.attr('data-index', i);
         $('#search-history').append(li);
     })
+    setActive($("#search-history :first-child"));
 }
 
 $('#search-history').on('click', 'li',  function(event) {
@@ -151,6 +153,22 @@ $('#search-history').on('click', 'li',  function(event) {
 function setActive(button) {
     button.addClass('active');
     button.siblings().removeClass('active');
+}
+
+function displayBg(city) {
+    $.ajax({
+        url: 'https://api.unsplash.com/photos/random?' 
+            + '&query=' + city.name
+            + '&client_id=uqF4UVdoAAVsj-bpVC81B0GGYmEv6vzzJYXzn_FidA8',
+        method: 'GET',
+      }).then(function (response) {
+        console.log(response);
+        $('#dashboard').css({
+            'background-image': 'url(\'' + response.urls.full + '\')', 
+            'background-size': 'cover', 
+            'background-position': 'center'
+        })
+    });
 }
 
 function init() {
