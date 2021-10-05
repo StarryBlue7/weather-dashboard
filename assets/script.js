@@ -1,3 +1,7 @@
+// Units can be set to metric here
+const units =  "imperial";
+
+// Get weather based on city latitude and longitude from OneCall API
 function getWeather(city, units) {
     if (!units) {
         units = "imperial"
@@ -18,6 +22,7 @@ function getWeather(city, units) {
       });
 }
 
+// Display today's weather
 function displayToday(response, city, units) {
     const current = response.current;
     
@@ -34,6 +39,7 @@ function displayToday(response, city, units) {
     $('#current').append(cityName, date, temperature, humidity, wind, uvIndex);
 }
 
+// Display 5-day forecast cards
 function displayForecast(response, units) {
     const daily = response.daily;
     
@@ -50,6 +56,7 @@ function displayForecast(response, units) {
     }
 }
 
+// Set units
 function getUnits(units) {
     if (!units || units === "imperial") {
         return {
@@ -63,10 +70,12 @@ function getUnits(units) {
     }
 }
 
+// Creates icon from data code
 function getIcon(iconCode, description) {
     return "<img alt='" + description + " icon' src='http://openweathermap.org/img/wn/" + iconCode + "@2x.png'>"
 }
 
+// Colors UV Index by value
 function getUVClass(uvi) {
     const uviVal = parseInt(uvi); 
     if (uviVal < 3) {
@@ -88,6 +97,7 @@ $('#search-form').on('submit', function(event) {
     getCoordinates(cityQuery); 
 });
 
+// Get city latitude and longitude from Geocoding API
 function getCoordinates(cityQuery) {
     if (!cityQuery) {
         cityQuery = "San Francisco"
@@ -118,6 +128,7 @@ function getCoordinates(cityQuery) {
       });
 }
 
+// Save history of city searches 
 function saveHistory(city) {
     let searchHistory = JSON.parse(localStorage.getItem("searchHistory"));
     if (!searchHistory) {
@@ -155,6 +166,7 @@ function showHistory() {
     setActive($("#search-history :first-child"));
 }
 
+// Use lat/lon of previous searches to skip repeated Geocoding API calls
 $('#search-history').on('click', 'li',  function(event) {
     event.stopPropagation();
     const button = $(this);
@@ -166,11 +178,13 @@ $('#search-history').on('click', 'li',  function(event) {
     setActive(button);
 })
 
+// Highlight selected city from search list
 function setActive(button) {
     button.addClass('active');
     button.siblings().removeClass('active');
 }
 
+// Call Unsplash API for a randomly selected photo of searched city
 function displayBg(city) {
     $.ajax({
         url: 'https://api.unsplash.com/photos/random?' 
@@ -187,6 +201,7 @@ function displayBg(city) {
     });
 }
 
+// Get weather data for most recently searched city and display search history on page load
 function init() {
     let searchHistory = JSON.parse(localStorage.getItem("searchHistory"));
     if (!searchHistory) {

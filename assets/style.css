@@ -18,6 +18,7 @@
     border-radius: 0 0 3px 0;
 }
 
+/* Current weather card */
 #current-card {
     background-color: rgba(255, 255, 255, 0.7);
 }
@@ -30,6 +31,7 @@
     font-size: 500%;
 }
 
+/* Circular background on weather image for improved visibility */
 h2 > img {
     background-color: rgba(2, 117, 216, 0.7);
     border-radius: 50%;
@@ -43,6 +45,7 @@ h2 > img {
     border: rgba(200, 200, 200, 0.7) solid 1px;
 }
 
+/* Forecast cards */
 #forecast > .card {
     background-color: rgba(2, 117, 216, 0.9);
 }
@@ -62,6 +65,7 @@ h2 > img {
     align-self: center;
 }
 
+/* UV index icon */
 .uv {
     border-radius: 15px;
     padding: 2px 5px;
@@ -92,6 +96,7 @@ h2 > img {
     color: white;
 }
 
+/* Collapse search history when components are stacked */
 @media screen and (max-width: 768px) {
     #search-history {
         max-height: 20vh;
