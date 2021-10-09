@@ -72,7 +72,7 @@ function getUnits(units) {
 
 // Creates icon from data code
 function getIcon(iconCode, description) {
-    return "<img alt='" + description + " icon' src='http://openweathermap.org/img/wn/" + iconCode + "@2x.png'>"
+    return "<img alt='" + description + " icon' src='https://openweathermap.org/img/wn/" + iconCode + "@2x.png'>"
 }
 
 // Colors UV Index by value
@@ -103,7 +103,7 @@ function getCoordinates(cityQuery) {
         cityQuery = "San Francisco"
     }
     $.ajax({
-        url: 'http://api.openweathermap.org/geo/1.0/direct?' 
+        url: 'https://api.openweathermap.org/geo/1.0/direct?' 
             + 'q=' + cityQuery
             + '&limit=' + 1 
             + '&appid=48ccf0d7dcd5e9995e55bdbae3480a14',
