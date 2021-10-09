@@ -72,7 +72,7 @@ function getUnits(units) {
 
 // Creates icon from data code
 function getIcon(iconCode, description) {
-    return "<img alt='" + description + " icon' src='http://openweathermap.org/img/wn/" + iconCode + "@2x.png'>"
+    return "<img alt='" + description + " icon' src='https://openweathermap.org/img/wn/" + iconCode + "@2x.png'>"
 }
 
 // Colors UV Index by value
